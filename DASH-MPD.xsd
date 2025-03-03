@@ -1,4 +1,6 @@
+
 <?xml version="1.0" encoding="UTF-8"?> 
+
 <!DOCTYPE schema [
 	<!-- space  -->
 	<!ENTITY space "&#x20;">
@@ -171,7 +173,6 @@
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
-
 
 	<xs:simpleType name="PresentationType">
 		<xs:annotation>
@@ -382,6 +383,7 @@
 				maxOccurs="unbounded"/>
 			<xs:element name="ClientDataReporting" type="ClientDataReportingType" minOccurs="0"
 				maxOccurs="unbounded"/>
+
 			<xs:element name="EventRestrictions" type="EventRestrictionsType" minOccurs="0"
 				maxOccurs="unbounded"/>
 			<xs:element name="PlaybackRestrictions" type="PlaybackRestrictionsType" minOccurs="0"
@@ -709,8 +711,8 @@
 			<xs:element name="ContentPopularityRate" type="ContentPopularityRateType" minOccurs="0"
 				maxOccurs="unbounded"/>
 			<xs:element name="Resync" type="ResyncType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="SegmentSequenceProperties" type="SegmentSequencePropertiesType"
-				minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SegmentSequenceProperties" type="SegmentSequencePropertiesType" minOccurs="0" maxOccurs="unbounded"/>
+
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="profiles" type="ListOfProfilesType"/>
@@ -975,6 +977,7 @@
 				<xs:attribute name="endNumber" type="xs:unsignedLong"/>
 				<xs:attribute name="endSubNumber" type="xs:unsignedLong"/>
 				<xs:attribute name="k" type="xs:unsignedLong"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -1067,6 +1070,7 @@
 				sequences </xs:documentation>
 		</xs:annotation>
 
+
 		<xs:sequence>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
@@ -1097,19 +1101,22 @@
 			<xs:documentation xml:lang="en"> Segment Timeline </xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="Pattern" type="PatternType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<xs:element name="S" minOccurs="1" maxOccurs="unbounded">
+
+			<xs:element name="Pattern" type="PatternType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="S" minOccurs="0" maxOccurs="unbounded">
+
 				<xs:complexType>
 
 					<xs:attribute name="t" type="xs:unsignedLong"/>
 					<xs:attribute name="n" type="xs:unsignedLong"/>
 					<xs:attribute name="d" type="xs:unsignedLong"/>
 					<xs:attribute name="r" type="xs:integer" default="0"/>
+
 					<xs:attribute name="k" type="xs:unsignedInt" default="1"/>
 					<xs:attribute name="p" type="xs:unsignedInt" />
 					<xs:attribute name="pE" type="xs:unsignedInt" default="0"/>
 					<xs:attribute name="ssp" type="xs:unsignedInt" />
+
 					<xs:anyAttribute namespace="##other" processContents="lax"/>
 				</xs:complexType>
 			</xs:element>
@@ -1257,6 +1264,22 @@
 		</xs:simpleContent>
 	</xs:complexType>
 
+
+	<!-- ClientDataReporting -->
+	<xs:complexType name="ClientDataReportingType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en"> Client Data Reporting </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ReportingSystem" type="DescriptorType" minOccurs="1"
+				maxOccurs="unbounded"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="serviceLocations" type="StringVectorType"/>
+		<xs:attribute name="adaptationSets" type="UIntVectorType"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+
 	<!-- CMCDParameterType -->
 	<xs:complexType name="CMCDParameterType">
 		<xs:annotation>
@@ -1276,7 +1299,9 @@
 		</xs:attribute>
 		<xs:attribute name="includeInRequests" type="StringNoWhitespaceVectorType"
 			default="segments"/>
+
 		<xs:attribute name="keys" type="StringNoWhitespaceVectorType" use="required"/>
+
 		<xs:attribute name="contentID" type="StringNoWhitespaceType"/>
 		<xs:attribute name="sessionID" type="StringNoWhitespaceType"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
@@ -1295,6 +1320,7 @@
 			<xs:documentation xml:lang="en"> Segment Sequence properties </xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
+
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="type" type="SAPType" default="0"/>
@@ -1357,5 +1383,24 @@
 		</xs:complexContent>
 	</xs:complexType>
 
+
+=======
+			<xs:element name="SAP" type="SapWithCadenceType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+
+	<xs:complexType name="SapWithCadenceType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en"> Segment Sequence SAP properties </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="SAPType" use="required"/>
+		<xs:attribute name="cadence" type="xs:unsignedInt" default="0"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
 
 </xs:schema>
