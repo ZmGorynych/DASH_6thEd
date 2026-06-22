@@ -80,7 +80,7 @@ ROLE-VALUE  =/ "forced-subtitle" / "easyreader" / "karaoke"
 ; Scheme: urn:mpeg:dash:stereoid:2011
 ; =============================================================================
 
-STEREOID-VALUE = VIEW-INDICATOR *( WSP VIEW-INDICATOR )
+STEREOID-VALUE = VIEW-INDICATOR *( WS VIEW-INDICATOR )
 VIEW-INDICATOR = ("l"/"r") 1*DIGIT
 
 
@@ -125,7 +125,7 @@ ADAPTATION-SET-ID = DECIMAL-DIGITS
 ; Scheme: urn:mpeg:dash:mpd-as-linking:2015
 ; =============================================================================
 
-MPD-AS-LINKING-VALUE = MPD-URL [ WSP TIMELINE-OFFSET ]
+MPD-AS-LINKING-VALUE = MPD-URL [ WS TIMELINE-OFFSET ]
 
 MPD-URL          = httpurl
 
@@ -145,7 +145,7 @@ SAI-VALUE = *VCHAR
 ; Scheme: urn:mpeg:dash:qr-equivalence:2019
 ; =============================================================================
 
-QR-EQUIVALENCE-VALUE = AS-ID *( "," WS AS-ID )
+QR-EQUIVALENCE-VALUE = AS-ID *( WS AS-ID )
 
 AS-ID = DECIMAL-DIGITS
 
@@ -155,7 +155,7 @@ AS-ID = DECIMAL-DIGITS
 ; SupVideoInfo@processingInfo value syntax
 ; =============================================================================
 
-processingInfo       = dataUnitsReplaceable 1*( WSP regionId )
+processingInfo       = dataUnitsReplaceable 1*( WS regionId )
 
 dataUnitsReplaceable = "0" / "1"
 
@@ -198,12 +198,8 @@ coordinate-id   = STRING
 ; =============================================================================
 
 DECIMAL-DIGITS = 1*DIGIT
-
 STRING         = *VCHAR
-
-; WS is used in the spec as an alias for whitespace between tokens
 WS             = 1*WSP
-
 httpurl = http-URI / https-URI
 ; http-URI and https-URI are  defined in IETF RFC 9110 sec. 4.2
 
